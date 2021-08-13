@@ -13,4 +13,12 @@ CREATE TABLE "member" (
     "deleted_at"timestamptz
 );
 
+CREATE TABLE "comments" (
+    "id" int GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    "label" text NOT NULL,
+    "created_at" timestamptz NOT NULL DEFAULT now(),
+    "updated_at" timestamptz,
+    "deleted_at"timestamptz
+);
+
 COMMIT;
