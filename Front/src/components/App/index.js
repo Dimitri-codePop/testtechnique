@@ -1,28 +1,34 @@
 // == Import npm
-import React from 'react';
+import React, { useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Login from 'src/components/Login';
 import Signup from 'src/components/Signup';
+import Home from 'src/components/Home';
+
 
 // == Import
 import reactLogo from './react-logo.svg';
 import './styles.css';
 
 // == Composant
-const App = () => (
+export default function App() {
+
+  const [IsLogged, setIsLogged] = useState(false);
+
+  return (
   <div className="app">
-    <img src={reactLogo} alt="react logo" />
-    <h1>Composant : App</h1>
+    <h1>Bienvenue sur Github Comments </h1>
     <Switch>
         <Route exact path="/">
           <Signup />
         </Route>
         <Route exact path="/login">
-          <Login />
+          <Login IsLogged={IsLogged} setIsLogged={setIsLogged} />
+        </Route>
+        <Route exact path="/home">
+          <Home IsLogged={IsLogged} setIsLogged={setIsLogged} />
         </Route>
     </Switch>
-  </div>
-);
+  </div>)
+};
 
-// == Export
-export default App;
