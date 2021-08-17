@@ -31,7 +31,7 @@ const handleSubmit = async (event) => {
     result.IsLogged = true;
     setIsLogged(true);
 
-    localStorage.setItem('UserKeysUsed', JSON.stringify(result));
+    localStorage.setItem('UserKeysUsed', JSON.stringify(result.data));
 
 
   } catch (error) {
