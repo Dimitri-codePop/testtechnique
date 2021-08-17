@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import Login from 'src/components/Login';
 import Signup from 'src/components/Signup';
 import Home from 'src/components/Home';
+import Comments from 'src/components/Comments';
 
 
 // == Import
@@ -27,6 +28,9 @@ export default function App() {
         </Route>
         <Route exact path="/home">
           <Home IsLogged={IsLogged} setIsLogged={setIsLogged} />
+        </Route>
+        <Route exact path="/:id/comments">
+          <Comments IsLogged={IsLogged} setIsLogged={setIsLogged} />
         </Route>
     </Switch>
   </div>)

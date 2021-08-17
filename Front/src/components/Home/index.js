@@ -26,8 +26,9 @@ export default function Home ()  {
 
       const result = await axios.get(`https://api.github.com/search/users?q=${searchGit}`);
       const list = result.data.items.map((profil, i) => {
+        const url = `/${profil.login}/comments`
         return (
-          <li key={i}>{profil.login}</li>
+          <li key={i}> <a href={url}>{profil.login}</a></li>
         )
       })
       
