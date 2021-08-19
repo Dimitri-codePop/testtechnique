@@ -40,8 +40,6 @@ const handleSubmit = async (event) => {
     event.preventDefault();
 
     const result = await axios.post('http://localhost:4000/signup', {lastname, firstname, email, password, confirmPassword});
-
-    console.log(result);
   } catch (error) {
     console.log(error);
   }

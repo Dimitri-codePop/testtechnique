@@ -15,6 +15,7 @@ import './styles.css';
 export default function App() {
 
   const [IsLogged, setIsLogged] = useState(false);
+  const [searchUserGit, setsearchUserGit] = useState("");
 
   return (
   <div className="app">
@@ -27,10 +28,10 @@ export default function App() {
           <Login IsLogged={IsLogged} setIsLogged={setIsLogged} />
         </Route>
         <Route exact path="/home">
-          <Home IsLogged={IsLogged} setIsLogged={setIsLogged} />
+          <Home IsLogged={IsLogged} setIsLogged={setIsLogged} setsearchUserGit={setsearchUserGit} searchUserGit={searchUserGit} />
         </Route>
         <Route exact path="/:id/comments">
-          <Comments IsLogged={IsLogged} setIsLogged={setIsLogged} />
+          <Comments IsLogged={IsLogged} setIsLogged={setIsLogged} setsearchUserGit={setsearchUserGit} searchUserGit={searchUserGit} />
         </Route>
     </Switch>
   </div>)
