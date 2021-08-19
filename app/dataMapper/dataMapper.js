@@ -12,11 +12,12 @@ module.exports = {
     },
     async getComment(gitusername){
         const result = await client.query(`SELECT * FROM "comments" WHERE gitusername = $1`, [gitusername])
-        return result.rows[0];
+        console.log(result.rows);
+        return result.rows;
     },
     async postCommentary(label, gitusername, reposname){
         console.log(label, gitusername, reposname);
-        const result = await client.query(`INSERT INTO "comments" ("label", "gitusername", "reposname") VALUES ($1, $2, $3) RETURNING *`, [label, gitusername, reposname])
+        const result = await client.query(`INSERT INTO "comments" ("label", "gitusername", "reposname") VALUES ($1, $2, $3) RETURNING *`, [label, gitusername, reposname]);
         return result.rows[0];
     }
     

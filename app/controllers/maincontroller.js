@@ -63,10 +63,10 @@ module.exports = {
             const comments = await dataMapper.getComment(gitusername);
 
             if(!comments) {
-                res.status(200).json({})
+                res.status(200).json([])
             }
 
-            res.status(200).json({comments});
+            res.status(200).json(comments);
             
         } catch (error) {
             console.trace(error);

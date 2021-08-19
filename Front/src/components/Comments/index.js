@@ -13,18 +13,32 @@ export default function Comments() {
     const [ comments, setComments] = useState("");
     const [ fetchComment, setfetchComment] = useState([]);
     const [ errorMessage, setErrorMessage] = useState("");
+    const [ listComment, setlistComment] = useState([]);
+    let listComments;
 
     useEffect(async () => {
       const commentary = await axios.get(`http://localhost:4000/commentary/${id}`);
       
 
-      if(!commentary.data.data){
+      if(!commentary.data){
         setErrorMessage("Aucun commentaire")
       }
+      const result = commentary.data;
 
-      setfetchComment(commentary);
-   }, []);
+      setfetchComment(commentary.data);
+    }, []);
     
+
+   useEffect( () => { 
+     if(fetchComment){
+      listComments = fetchComment.map( (comment, i) => {
+         return ( <div key={i}><p> {comment.gitusername}: {comment.label}</p></div>)
+       })
+
+       setlistComment(listComments);
+
+     }
+   }, [fetchComment])
 
     const handleReposName  = (event) => {
       const value = event.target.value;
@@ -43,7 +57,7 @@ export default function Comments() {
         
         const result = await axios.get(`https://api.github.com/repos/${id}/${reposName}`);
 
-        setErrorMessage("Nous avons bien trouver le repos")
+        setErrorMessage(`Nous avons bien trouver le repos : ${reposName}`)
 
         console.log(result);
 
@@ -78,6 +92,9 @@ export default function Comments() {
     </form>
 
     <h1>{errorMessage}</h1>
+
+
+    {listComment}
 
     </>
 );
