@@ -1,4 +1,4 @@
-const { login } = require('../controllers/maincontroller');
+const { login, getComment, postCommentary } = require('../controllers/maincontroller');
 const client = require('../database');
 
 module.exports = {
@@ -9,5 +9,15 @@ module.exports = {
     async login(email){
         const result = await client.query(`SELECT * FROM "member" WHERE email = $1`, [email]);
         return result.rows[0];
+    },
+    async getComment(gitusername){
+        const result = await client.query(`SELECT * FROM "comments" WHERE gitusername = $1`, [gitusername])
+        return result.rows[0];
+    },
+    async postCommentary(label, gitusername, reposname){
+        console.log(label, gitusername, reposname);
+        const result = await client.query(`INSERT INTO "comments" ("label", "gitusername", "reposname") VALUES ($1, $2, $3) RETURNING *`, [label, gitusername, reposname])
+        return result.rows[0];
     }
+    
 }

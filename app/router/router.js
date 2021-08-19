@@ -13,4 +13,13 @@ router.route('/signup')
 /* Route connexion */
 router.post('/login', mainController.login);
 
+
+/* Route des commentaires */
+
+router.route('/commentary/:name')
+    .get(mainController.getComment);
+
+router.route('/comment/:name/:repo')
+    .post(mainController.postCommentary);
+
 module.exports = router;

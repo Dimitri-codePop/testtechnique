@@ -4,8 +4,9 @@ import axios from 'axios';
 import './styles.css';
 
 import PropTypes from 'prop-types';
-export default function Home ({searchUserGit, setsearchUserGit})  {
+export default function Home ()  {
   const [fetchUser, setFetchUser] = useState({});
+  const [searchUserGit, setsearchUserGit] = useState("");
   const [ list, setList ] = useState([]);
 
    useEffect(() => {

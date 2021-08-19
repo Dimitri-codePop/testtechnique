@@ -3,5 +3,6 @@
 BEGIN;
 
 DROP TABLE "member";
+DROP TABLE "comments";
 
 COMMIT;

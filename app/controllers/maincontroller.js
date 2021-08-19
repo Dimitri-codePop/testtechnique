@@ -55,5 +55,35 @@ module.exports = {
         } catch (error) {
             console.trace(error)
         }
+    },
+    async getComment(req, res) {
+        try {
+            const gitusername = req.params.name;
+
+            const comments = await dataMapper.getComment(gitusername);
+
+            if(!comments) {
+                res.status(200).json({})
+            }
+
+            res.status(200).json({comments});
+            
+        } catch (error) {
+            console.trace(error);
+        }
+    },
+    async postCommentary(req, res){
+        try {
+            const gitusername = req.params.name;
+            const reposname = req.params.repo;
+            const label = req.body.comments;
+
+            const postCommentary = await dataMapper.postCommentary(label, gitusername, reposname);
+
+            res.status(200).json({postCommentary});
+            
+        } catch (error) {
+            console.trace(error)
+        }
     }
 }
